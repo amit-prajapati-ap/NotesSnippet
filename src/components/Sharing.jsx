@@ -43,7 +43,7 @@ const Sharing = ({ title, content, paste }) => {
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm shadow-2xl shadow-gray-900">
-          <div className="bg-gray-900 text-white p-4 rounded-md shadow-lg w-96">
+          <div className="bg-gray-900 text-white p-4 rounded-md shadow-lg sm:w-96">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold">Share link</h3>
               <button className="cursor-pointer rounded-full hover:bg-zinc-950 p-4 transition-all duration-300" onClick={() => setIsOpen(false)}>
