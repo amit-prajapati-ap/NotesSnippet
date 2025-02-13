@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import image from '../assets/Logo.png'
 
 export default function Navbar() {
   return (
     <nav className="flex justify-between items-center min-h-[8vh] py-1 bg-black px-[5vw]">
-      <NavLink to='/' className="text-white text-2xl">NotesSnippet</NavLink>
+      <NavLink to='/' className="text-white text-xl flex items-center justify-center gap-1"> <img src={image} className="w-[50px]" /> NotesSnippet</NavLink>
       <div className="p-3 rounded-xl flex space-x-4 shadow-lg">
         <NavLink
           to="/"
