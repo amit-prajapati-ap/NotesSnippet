@@ -7,6 +7,7 @@ import Pastes from './components/Pastes'
 import Footer from './components/Footer'
 import PageNotFound from './components/PageNotFound'
 import Navbar from './components/NavBar'
+import AuthForm from './components/AuthForm'
 
 const router = createBrowserRouter(
   [
@@ -34,6 +35,15 @@ const router = createBrowserRouter(
       <div>
         <NavBar/>
         <ViewPaste/>
+        <Footer/>
+      </div>
+    },
+    {
+      path: '/auth',
+      element: 
+      <div>
+        <NavBar/>
+        <AuthForm/>
         <Footer/>
       </div>
     },
