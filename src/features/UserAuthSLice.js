@@ -4,7 +4,7 @@ const initialState = {
     user: {
         name: 'Amit',
         email: 'xyz@gmail.com',
-        profile: 'image',
+        profile: 'image'
     }
 }
 
