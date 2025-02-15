@@ -2,9 +2,22 @@ import { useState } from "react";
 import { FaSignOutAlt, FaPencilAlt } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import image from "../assets/defaultProfile.jpg";
+import { useDispatch } from "react-redux";
+import { DeleteUser, SignOut } from "@/features/UserAuthSLice";
 
 const UserDropdown = (profileImage, profileName="User", profileEmail="xyz@gamil.com") => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch()
+
+  const deleteUser = (e) => {
+    e.preventDefault()
+    dispatch(DeleteUser())
+  }
+
+  const logoutUser = (e) => {
+    e.preventDefault()
+    dispatch(SignOut())
+  }
 
   return (
     <div className="relative">
@@ -39,11 +52,11 @@ const UserDropdown = (profileImage, profileName="User", profileEmail="xyz@gamil.
 
           {/* Search History & Delete */}
           <div className="mt-4">
-            <button className="flex items-center space-x-3 w-full p-3 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer transition-all duration-300">
+            <button onClick={logoutUser} className="flex items-center space-x-3 w-full p-3 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer transition-all duration-300">
               <FaSignOutAlt className="text-gray-400" />
               <span>Log out</span>
             </button>
-            <button className="flex items-center space-x-3 w-full p-3 rounded-lg bg-gray-800 hover:bg-gray-700 mt-2 cursor-pointer transition-all duration-300">
+            <button onClick={deleteUser} className="flex items-center space-x-3 w-full p-3 rounded-lg bg-gray-800 hover:bg-gray-700 mt-2 cursor-pointer transition-all duration-300">
               <FaTrash className="text-gray-400" />
               <span className="text-red-600">Delete</span>
             </button>

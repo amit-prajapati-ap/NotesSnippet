@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { BiLogoGoogle, BiLogoGithub } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import {
+  SignInGithub,
+  SignInGoogle,
+  SignInEmail,
+  SignUp,
+} from "../features/UserAuthSLice";
 
+// -----Styling Start-----
 const move = keyframes`
- 0%{
-     opacity:0;
- 
- }
- 95%{
-     opacity:1;
- 
- }
+  0%{
+      opacity:0;
+  
+  }
+  95%{
+      opacity:1;
+  
+  }
 
-`;
+  `;
 const BackgroundBox = styled.div`
   background-color: #beeefb;
   height: 60%;
@@ -237,9 +245,38 @@ const Text = styled.div`
     font-size: 5rem;
   }
 `;
+// -----Styling End-----
 
 function FormComponent() {
   const [click, setClick] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch()
+
+  const SignUpUser = (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      dispatch(SignUp({ email, password }));
+      console.log("signup");
+    } else console.log("Error");
+  };
+
+  const signInWithEmailUser = (e) => {
+    e.preventDefault();
+    dispatch(SignInEmail({ email, password }));
+  };
+
+  const signInWithGoogleUser = (e) => {
+    e.preventDefault();
+    dispatch(SignInGoogle());
+  };
+
+  const signInWithGithubUser = (e) => {
+    e.preventDefault();
+    dispatch(SignInGithub());
+  };
+
   const handleClick = () => setClick(!click);
   return (
     <div className="h-screen lg:h-[60vh] xl:h-[45vh] 2xl:h-[40vh] w-full bg-gray-950 z-10">
@@ -252,16 +289,20 @@ function FormComponent() {
           <Input
             type="email"
             name="email"
-            id="emailId"
+            id="emailIdLogin"
             placeholder="Email"
             className="text-lg"
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <Input
             type="password"
             name="password"
-            id="passwordId"
+            id="passwordIdLogin"
             placeholder="Password"
             className="text-lg"
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <Link
             href="#"
@@ -269,12 +310,18 @@ function FormComponent() {
           >
             Forgot Your Password?
           </Link>
-          <Button className="transition-all duration-300">Sign In</Button>
+          <Button
+            type="submit"
+            onClick={signInWithEmailUser}
+            className="transition-all duration-300"
+          >
+            Sign In
+          </Button>
           <div className="mt-4 flex gap-4">
-            <button>
+            <button type="submit" onClick={signInWithGoogleUser}>
               <BiLogoGoogle size={48} className="cursor-pointer" />
             </button>
-            <button>
+            <button type="submit" onClick={signInWithGithubUser}>
               <BiLogoGithub size={48} className="cursor-pointer" />
             </button>
           </div>
@@ -295,25 +342,31 @@ function FormComponent() {
             <Input
               type="email"
               name="email"
-              id="emailId"
+              id="emailIdSignup"
               placeholder="Email"
               className="text-lg"
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col lg:flex-row gap-4">
             <Input
               type="password"
               name="password"
-              id="passwordId"
+              id="passwordIdSignup"
               placeholder="Set Password"
               className="text-lg"
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <Input
               type="password"
               name="password"
-              id="confirmPasswordId"
+              id="confirmPasswordIdSignup"
               placeholder="Confirm Password"
               className="text-lg"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
           </div>
           <Link
@@ -323,10 +376,19 @@ function FormComponent() {
           >
             Already have an Account?
           </Link>
-          <Button className="transition-all duration-300">Sign Up</Button>
+          <Button
+            type="submit"
+            onClick={SignUpUser}
+            className="transition-all duration-300"
+          >
+            Sign Up
+          </Button>
         </Form>
 
-        <Text className="text1 absolute right-[40%] max-w-[500px]" clicked={click}>
+        <Text
+          className="text1 absolute right-[40%] max-w-[500px]"
+          clicked={click}
+        >
           <h1>Welcome!</h1>
           Don't have an account?
           <br />
@@ -334,7 +396,10 @@ function FormComponent() {
           <span className="attention-icon">⤶</span>
         </Text>
 
-        <Text className="text2 text1 absolute left-[40%] max-w-[500px]" clicked={click}>
+        <Text
+          className="text2 text1 absolute left-[40%] max-w-[500px]"
+          clicked={click}
+        >
           <h1>Hi There!</h1>
           Already have an account?
           <br />
