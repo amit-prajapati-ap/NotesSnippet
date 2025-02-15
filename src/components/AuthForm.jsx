@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { BiLogoGoogle, BiLogoGithub } from "react-icons/bi";
 
 const move = keyframes`
-0%{
-    opacity:0;
-
-}
-95%{
-    opacity:1;
-
-}
+ 0%{
+     opacity:0;
+ 
+ }
+ 95%{
+     opacity:1;
+ 
+ }
 
 `;
 const BackgroundBox = styled.div`
@@ -179,14 +180,13 @@ const Button = styled.button`
 
 const Title = styled.h1`
   font-size: 3.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const Link = styled.a`
   text-decoration: none;
-  color: #333;
   font-size: 1.4rem;
-  margin: 1rem 0;
+  margin: 0.3rem 0;
 `;
 
 const ButtonAnimate = styled.button`
@@ -218,7 +218,7 @@ const ButtonAnimate = styled.button`
 const Text = styled.div`
   position: absolute;
   z-index: 1000;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: column;
   letter-spacing: 0.2rem;
@@ -242,47 +242,91 @@ function FormComponent() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   return (
-    <div className="h-screen w-full bg-gray-950">
+    <div className="h-screen lg:h-[60vh] xl:h-[45vh] 2xl:h-[40vh] w-full bg-gray-950 z-10">
       {" "}
       <BackgroundBox clicked={click}>
         <ButtonAnimate clicked={click} onClick={handleClick}></ButtonAnimate>
 
-        <Form className="signin">
-          <Title>Sign In</Title>
-          <Input type="email" name="email" id="emailId" placeholder="Email" />
+        <Form className="signin max-w-[500px]">
+          <Title>Login</Title>
+          <Input
+            type="email"
+            name="email"
+            id="emailId"
+            placeholder="Email"
+            className="text-lg"
+          />
           <Input
             type="password"
             name="password"
             id="passwordId"
             placeholder="Password"
+            className="text-lg"
           />
-          <Link href="#">Forgot Your Password?</Link>
-          <Button>Sign In</Button>
+          <Link
+            href="#"
+            className="hover:text-blue-600 transition-all duration-300"
+          >
+            Forgot Your Password?
+          </Link>
+          <Button className="transition-all duration-300">Sign In</Button>
+          <div className="mt-4 flex gap-4">
+            <button>
+              <BiLogoGoogle size={48} className="cursor-pointer" />
+            </button>
+            <button>
+              <BiLogoGithub size={48} className="cursor-pointer" />
+            </button>
+          </div>
         </Form>
 
-        <Form className="signup">
+        <Form className="signup max-w-[500px]">
           <Title>Sign Up</Title>
-          <Input
-            type="text"
-            name="username"
-            id="usernameId"
-            placeholder="Username"
-          />
 
-          <Input type="email" name="email" id="emailId" placeholder="Email" />
-          <Input
-            type="password"
-            name="password"
-            id="passwordId"
-            placeholder="Password"
-          />
-          <Link href="#" onClick={handleClick}>
+          <div className="flex flex-col lg:flex-row gap-4">
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              className="text-lg"
+            />
+
+            <Input
+              type="email"
+              name="email"
+              id="emailId"
+              placeholder="Email"
+              className="text-lg"
+            />
+          </div>
+          <div className="flex flex-col lg:flex-row gap-4">
+            <Input
+              type="password"
+              name="password"
+              id="passwordId"
+              placeholder="Set Password"
+              className="text-lg"
+            />
+            <Input
+              type="password"
+              name="password"
+              id="confirmPasswordId"
+              placeholder="Confirm Password"
+              className="text-lg"
+            />
+          </div>
+          <Link
+            to="/auth"
+            onClick={handleClick}
+            className="cursor-pointer hover:text-blue-600 transition-all duration-300"
+          >
             Already have an Account?
           </Link>
-          <Button>Sign Up</Button>
+          <Button className="transition-all duration-300">Sign Up</Button>
         </Form>
 
-        <Text className="text1 absolute right-[40%]" clicked={click}>
+        <Text className="text1 absolute right-[40%] max-w-[500px]" clicked={click}>
           <h1>Welcome!</h1>
           Don't have an account?
           <br />
@@ -290,7 +334,7 @@ function FormComponent() {
           <span className="attention-icon">⤶</span>
         </Text>
 
-        <Text className="text2 text1 absolute left-[40%]" clicked={click}>
+        <Text className="text2 text1 absolute left-[40%] max-w-[500px]" clicked={click}>
           <h1>Hi There!</h1>
           Already have an account?
           <br />

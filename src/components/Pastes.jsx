@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import Sharing from "./Sharing";
 
 const Pastes = () => {
-  const pastes = useSelector((state) => state.pastes);
+  const pastes = useSelector((state) => state.pastes.pastes);
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
