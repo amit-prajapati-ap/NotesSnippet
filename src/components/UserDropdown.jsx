@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSignOutAlt, FaPencilAlt } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
-import image from "../assets/defaultProfile.jpg";
+import defaultProfile from "../assets/defaultProfile.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, emailVerify, logout } from "@/features/UserAuthSLice";
 import toast from "react-hot-toast";
@@ -39,9 +39,9 @@ const UserDropdown = () => {
         className="flex items-center space-x-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 cursor-pointer"
       >
         <img
-          src={profileImage || image}
+          src={profileImage || defaultProfile}
           alt=""
-          onError={(e) => (e.target.src = image)}
+          onError={(e) => (e.target.src = defaultProfile)}
           width={25}
           className="w-10 h-10 rounded-full text-sm "
         />
@@ -53,9 +53,9 @@ const UserDropdown = () => {
           {/* Profile Section */}
           <div className="text-center relative">
             <img
-              src={profileImage || image}
+              src={profileImage || defaultProfile}
               alt=""
-              onError={(e) => (e.target.src = image)}
+              onError={(e) => (e.target.src = defaultProfile)}
               className="w-16 h-16 rounded-full mx-auto border-2 border-gray-600"
             />
             <h3 className="text-lg font-semibold mt-2">Hi, {profileName}!</h3>
