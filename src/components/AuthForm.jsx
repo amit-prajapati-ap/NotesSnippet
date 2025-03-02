@@ -9,6 +9,7 @@ import {
   githubLogin,
   googleLogin,
 } from "../features/UserAuthSLice";
+import toast from "react-hot-toast";
 
 // -----Styling Start-----
 
@@ -281,13 +282,21 @@ function FormComponent() {
 
   const SignUpUser = async (e) => {
     e.preventDefault();
+    if (!name || !email || !password || !confirmPassword) {
+      toast.error("Please Fill All Credentials");
+      return;
+    }
     if (password === confirmPassword) {
       await dispatch(emailSignup({ email, password, name })).unwrap();
-    } else console.log("Password is not equal to ConfirmPassword");
+    } else toast.error("Password Not Matching");
   };
 
   const signInWithEmailUser = async (e) => {
     e.preventDefault();
+    if (!password || !email) {
+      toast.error("Please Fill All Credentials");
+      return;
+    }
     await dispatch(emailLogin({ email, password })).unwrap();
   };
 
@@ -344,7 +353,7 @@ function FormComponent() {
             {windowWidth < 1024 && (
               <p className="sm:text-2xl text-lg">
                 Don't have an account?{" "}
-                <span onClick={handleClick} className="text-blue-600 hover:text-blue-500 hover:underline transition-all duration-300">Register</span>
+                <span onClick={handleClick} className="text-blue-600 hover:text-blue-500 hover:underline transition-all duration-300 cursor-pointer">Register</span>
               </p>
             )}
           </div>
@@ -409,7 +418,7 @@ function FormComponent() {
           <Link
             to="/auth"
             onClick={handleClick}
-            className="cursor-pointer hover:text-blue-600 transition-all duration-300"
+            className="cursor-pointer hover:text-blue-600 hover:underline transition-all duration-300"
           >
             Already have an Account?
           </Link>

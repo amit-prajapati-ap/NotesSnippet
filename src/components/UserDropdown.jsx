@@ -58,8 +58,8 @@ const UserDropdown = () => {
               onError={(e) => (e.target.src = defaultProfile)}
               className="w-16 h-16 rounded-full mx-auto border-2 border-gray-600"
             />
-            <h3 className="text-lg font-semibold mt-2">Hi, {profileName}!</h3>
-            <p className="text-gray-400 text-sm">{profileEmail}</p>
+            <h3 className="text-lg font-semibold mt-2 mx-auto w-[150px]">Hi, {profileName}!</h3>
+            <p className="text-gray-400 text-sm w-full truncate" title={profileEmail}>{profileEmail}</p>
             { !isVerified && <p onClick={emailVerification} className="pt-1 text-blue-500 cursor-pointer hover:text-blue-600 transition-all duration-200 w-38">Verify Email</p> }
             <p className="absolute top-10 right-10 rounded-full p-1.5 bg-black cursor-pointer">
               <FaPencilAlt />
