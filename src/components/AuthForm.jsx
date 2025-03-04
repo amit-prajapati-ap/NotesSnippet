@@ -27,7 +27,7 @@ const move = keyframes`
 const BackgroundBox = styled.div`
   background-color: #beeefb;
   height: 600px;
-  width: 80%;
+  width: ${(props) => (props.windowWidth < 600 ? 98 : 80)}%;
 
   display: flex;
   justify-content: center;
@@ -81,7 +81,7 @@ const BackgroundBox = styled.div`
 
 const Box1 = styled.div`
   background-color: #f1fdcd;
-  width: ${(props) => (props.windowWidth < 1024 ? 80 : 50)}%;
+  width: ${(props) => (props.windowWidth < 600 ? 90 : (props.windowWidth < 1024 ? 80 : 50))}%;
   height: 100%;
   position: ${(props) => (props.windowWidth < 1024 ? "relative" : "absolute")};
   left: 0;

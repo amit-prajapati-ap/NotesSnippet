@@ -18,7 +18,7 @@ export default function Navbar() {
         className="text-white text-lg sm:text-xl flex items-center justify-center gap-1"
       >
         {" "}
-        <img src={image} className="w-[40px] sm:w-[50px]" /> NotesSnippet
+        <img src={image} className="w-[100px] sm:w-[50px]" /> <span className="sm:block hidden">NotesSnippet</span>
       </NavLink>
       <div className="sm:p-3 rounded-xl flex sm:space-x-4 shadow-lg">
         <NavLink
